@@ -25,11 +25,11 @@
         </div>
       </div>
       <div class="player">
-        <img alt="begin" src="icons/1/previous.svg" width="50" @click="goToStart" />
-        <img alt="stop" src="icons/1/stop.svg" width="50" @click="stop" />
-        <img v-if="!isPlay" alt="play" src="icons/1/play.svg" width="50" @click="play" class="playButton" />
-        <img v-else alt="pause" src="icons/1/pause.svg" width="50" @click="pause" class="playButton" />
-        <img alt="last" src="icons/1/next.svg" width="50" @click="goToEnd" />
+        <img alt="begin" src="/icons/1/previous.svg" width="50" @click="goToStart" />
+        <img alt="stop" src="/icons/1/stop.svg" width="50" @click="stop" />
+        <img v-if="!isPlay" alt="play" src="/icons/1/play.svg" width="50" @click="play" class="playButton" />
+        <img v-else alt="pause" src="/icons/1/pause.svg" width="50" @click="pause" class="playButton" />
+        <img alt="last" src="/icons/1/next.svg" width="50" @click="goToEnd" />
       </div>
       <div class="rangeBox" style="display: flex; justify-content: center; flex-direction: column; align-items: center">
         <div class="range">

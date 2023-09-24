@@ -1,7 +1,7 @@
 <template>
   <div class="variant">
     <label>
-      <img alt="cloud" src="icons/1/cloud.svg" width="50" />
+      <img alt="cloud" src="/icons/1/cloud.svg" width="50" />
     </label>
     <div>
       <input id="recentFile" style="display: none" type="file" @change="uploadFile" />

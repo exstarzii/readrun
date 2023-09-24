@@ -1,7 +1,7 @@
 <template>
   <div class="variant">
     <label>
-      <img alt="cloud" src="icons/1/cloud.svg" width="50" />
+      <img alt="cloud" src="/icons/1/cloud.svg" width="50" />
     </label>
     <div>
       <label>{{ $t('fileVariant1') }}</label>

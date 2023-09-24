@@ -1,7 +1,7 @@
 <template>
   <div class="variant">
     <label for="uploadFile">
-      <img alt="download" src="icons/1/download.svg" width="50" />
+      <img alt="download" src="/icons/1/download.svg" width="50" />
     </label>
     <label for="uploadFile">{{ $t('fileVariant2') }}</label>
     <input id="uploadFile" style="display: none" type="file" @change="uploadFile" />

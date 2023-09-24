@@ -7,7 +7,7 @@
   <div class="footer">
     <div class="videoBox">
       <div style="display: flex; justify-content: center">
-        <img alt="shot" src="icons/1/circle.svg" width="50" @click="shot" />
+        <img alt="shot" src="/icons/1/circle.svg" width="50" @click="shot" />
       </div>
       <input :value="$t('buttonStop')" type="button" @click="goBack" class="screenLink" />
     </div>

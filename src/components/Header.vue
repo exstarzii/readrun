@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img alt="LOGO" src="LOGO.png" width="48" style="margin-right: 80px" />
+    <img alt="LOGO" src="/LOGO.png" width="48" style="margin-right: 80px" />
     <img alt="light mode" :src="iconSRC" width="48" @click="changeLightMode" class="cursor-pointer" />
     <select name="locale" v-model="locale" class="lang">
       <option value="en">en</option>

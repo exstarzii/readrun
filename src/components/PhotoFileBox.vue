@@ -1,7 +1,7 @@
 <template>
   <div class="variant">
     <label for="getPhotoFile">
-      <img alt="scan" src="icons/1/scan.svg" width="50" />
+      <img alt="scan" src="/icons/1/scan.svg" width="50" />
     </label>
     <div>
       <label for="getPhotoFile">
