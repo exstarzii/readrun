@@ -121,6 +121,7 @@ body {
   .container {
     display: grid;
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
     padding: 20px;
     min-height: 100vh;
   }

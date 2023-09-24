@@ -232,6 +232,9 @@ function goToStart() {
   text-align: center;
   transition-property: font-size;
   transition-duration: 0.1s;
+  max-height: 910px;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .runline.anim {
