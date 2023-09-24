@@ -1,7 +1,7 @@
 <template>
   <div class="variant">
     <label>
-      <img alt="cloud" src="icons/1/cloud.svg" width="50" />
+      <img alt="cloud" src="/icons/1/cloud.svg" width="50" />
     </label>
     <div>
       <label>{{ $t('fileVariant1') }}</label>
@@ -20,18 +20,23 @@ const getFileNet = event => {
   }
   console.log('getFileNet')
   console.log(event.target.value)
-  fetch(event.target.value, {
+  useFetch("https://www.w3.org/services/html2txt", {
     method: 'GET',
-    mode: 'no-cors',
+    query: { url: 'https://pinia.vuejs.org/ssr/nuxt.html'}
   })
-    .then(response => response.text())
-    .then(res => {
-      console.log(res)
-      emit('openFile', localFiles.value[i].filename, res, 0)
+    .then(response => {
+      console.log("response", response.data);
+      return response.data;
+    })
+    .then(data => {
+      if (data.value)
+        emit('openFile', event.target.value, data.value, 0);
+      else {
+        alert('Could not get the text from this link');
+      }
     })
     .catch(error => {
-      console.error(error)
-      alert($t('cloudBadMessage'))
+      alert('Could not get the text from this link');
     })
 }
 </script>

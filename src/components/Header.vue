@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img alt="LOGO" src="LOGO.png" width="48" style="margin-right: 80px" />
+    <img alt="LOGO" src="/LOGO.png" width="48" style="margin-right: 80px" />
     <img alt="light mode" :src="iconSRC" width="48" @click="changeLightMode" class="cursor-pointer" />
     <select name="locale" v-model="locale" class="lang">
       <option value="en">en</option>
@@ -11,12 +11,13 @@
 </template>
 
 <script setup>
-import state from '../../store.js'
 import { computed, watch } from 'vue'
+import { useStore } from '../state-management/store'
 
+const store = useStore()
 const isPlay = computed({
   get() {
-    return state.isPlay
+    return store.isPlay
   },
 })
 
@@ -27,10 +28,10 @@ watch(isPlay, (newvalue, oldvalue) => {
 const { locale } = useI18n()
 const darkmode = computed({
   get() {
-    return state.darkmode
+    return store.darkmode
   },
   set(value) {
-    state.darkmode = value
+    store.darkmode = value
   },
 })
 const iconSRC = computed(() => (darkmode.value == 'darkmode' ? 'icons/1/dark_mode.svg' : 'icons/1/light_mode.svg'))

@@ -28,34 +28,35 @@ import RecentFileBox from '../../src/components/RecentFileBox.vue'
 import CloudFileBox from '../../src/components/CloudFileBox.vue'
 import LocalFileBox from '../../src/components/LocalFileBox.vue'
 import PhotoFileBox from '../../src/components/PhotoFileBox.vue'
-import state from '../../store.js'
 import { computed, toRef } from 'vue'
+import { useStore } from '../state-management/store'
 
-const localFiles = toRef(state, 'localFiles')
-const imageURL = toRef(state, 'imageURL')
+const store = useStore()
+const localFiles = toRef(store, 'localFiles')
+const imageURL = toRef(store, 'imageURL')
 
 const text = computed({
   get() {
-    return state.text
+    return store.text
   },
   set(value) {
-    state.text = value
+    store.text = value
   },
 })
 const progress = computed({
   get() {
-    return state.progress
+    return store.progress
   },
   set(value) {
-    state.progress = value
+    store.progress = value
   },
 })
 const filename = computed({
   get() {
-    return state.filename
+    return store.filename
   },
   set(value) {
-    state.filename = value
+    store.filename = value
   },
 })
 
@@ -63,15 +64,15 @@ function openFile(name, content, progressp = 0) {
   filename.value = name
   text.value = content
   progress.value = progressp
-  state.screen = 1
+  store.screen = 1
 }
 // toss up
 function setImageURL(newval) {
-  state.imageURL = newval
+  store.imageURL = newval
 }
 // toss up
 function changeScreen(_screen) {
-  state.screen = _screen
+  store.screen = _screen
 }
 </script>
 <style lang="scss">

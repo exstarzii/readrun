@@ -6,47 +6,49 @@
 </template>
 
 <script setup>
-import state from './store.js'
 import { computed, watch, onMounted } from 'vue'
 import Header from './src/components/Header.vue'
 import chooseFilePage from './src/pages/chooseFilePage.vue'
 import photoPage from './src/pages/photoPage.vue'
 import readPage from './src/pages/readPage.vue'
 import videoPage from './src/pages/videoPage.vue'
+import { useStore } from './src/state-management/store'
+
+const store = useStore()
 
 const Components = [chooseFilePage, readPage, photoPage, videoPage]
-const screen = computed(() => state.screen)
+const screen = computed(() => store.screen)
 
 const text = computed({
   get() {
-    return state.text
+    return store.text
   },
   set(value) {
-    state.text = value
+    store.text = value
   }
 })
 const progress = computed({
   get() {
-    return state.progress
+    return store.progress
   },
   set(value) {
-    state.progress = value
+    store.progress = value
   }
 })
 const filename = computed({
   get() {
-    return state.filename
+    return store.filename
   },
   set(value) {
-    state.filename = value
+    store.filename = value
   }
 })
 const localFiles = computed({
   get() {
-    return state.localFiles
+    return store.localFiles
   },
   set(value) {
-    state.localFiles = value
+    store.localFiles = value
   }
 })
 
@@ -119,6 +121,7 @@ body {
   .container {
     display: grid;
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
     padding: 20px;
     min-height: 100vh;
   }

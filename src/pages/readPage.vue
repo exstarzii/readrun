@@ -25,11 +25,11 @@
         </div>
       </div>
       <div class="player">
-        <img alt="begin" src="icons/1/previous.svg" width="50" @click="goToStart" />
-        <img alt="stop" src="icons/1/stop.svg" width="50" @click="stop" />
-        <img v-if="!isPlay" alt="play" src="icons/1/play.svg" width="50" @click="play" class="playButton" />
-        <img v-else alt="pause" src="icons/1/pause.svg" width="50" @click="pause" class="playButton" />
-        <img alt="last" src="icons/1/next.svg" width="50" @click="goToEnd" />
+        <img alt="begin" src="/icons/1/previous.svg" width="50" @click="goToStart" />
+        <img alt="stop" src="/icons/1/stop.svg" width="50" @click="stop" />
+        <img v-if="!isPlay" alt="play" src="/icons/1/play.svg" width="50" @click="play" class="playButton" />
+        <img v-else alt="pause" src="/icons/1/pause.svg" width="50" @click="pause" class="playButton" />
+        <img alt="last" src="/icons/1/next.svg" width="50" @click="goToEnd" />
       </div>
       <div class="rangeBox" style="display: flex; justify-content: center; flex-direction: column; align-items: center">
         <div class="range">
@@ -54,7 +54,9 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import state from '../../store.js'
+import { useStore } from '../state-management/store'
+
+const store = useStore()
 
 const timer = ref()
 const timerSpeed = ref()
@@ -63,10 +65,10 @@ const wordsPerMinuteMIN = 20
 const wordsPerMinuteMAX = 1000
 const isPlay = computed({
   get() {
-    return state.isPlay
+    return store.isPlay
   },
   set(value) {
-    state.isPlay = value
+    store.isPlay = value
   },
 })
 const wordsPerMinute = ref(100)
@@ -74,26 +76,26 @@ const wordsPerMinute = ref(100)
 let animId
 const text = computed({
   get() {
-    return state.text
+    return store.text
   },
   set(value) {
-    state.text = value
+    store.text = value
   },
 })
 const progress = computed({
   get() {
-    return state.progress
+    return store.progress
   },
   set(value) {
-    state.progress = value
+    store.progress = value
   },
 })
 const filename = computed({
   get() {
-    return state.filename
+    return store.filename
   },
   set(value) {
-    state.filename = value
+    store.filename = value
   },
 })
 
@@ -105,7 +107,7 @@ const countChange = (event) => {
   // console.log(progress.value)
 }
 
-const textArray = computed(() => (text.value ? text.value.split(' ') : []))
+const textArray = computed(() => (text.value ? text.value.trim().split(/\s+/).map(word => word.replace(/[.,!]/g, '')) : []))
 const word = computed(() => textArray.value[progress.value] || 'Текст завершен')
 
 const runline = ref(null)
@@ -157,7 +159,7 @@ function pause() {
 
 function stop() {
   pause()
-  state.screen = 0
+  store.screen = 0
   filename.value = null
 }
 function goToEnd() {
@@ -230,6 +232,9 @@ function goToStart() {
   text-align: center;
   transition-property: font-size;
   transition-duration: 0.1s;
+  max-height: 910px;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .runline.anim {
