@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       locale: 'en',
       messages: {
         en: {
-          fileVariant1: 'Insert a link to the text',
+          fileVariant1: 'Insert a link to the text and wait',
           fileVariant2: 'Download from device',
           fileVariant3: 'Scan Text',
           textEnd: 'Text end',
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
           cloudBadMessage: 'Could not get the text from this link',
         },
         ru: {
-          fileVariant1: 'Вставьте ссылку на текст',
+          fileVariant1: 'Вставьте ссылку на текст и ждите',
           fileVariant2: 'Загрузить с устройства',
           fileVariant3: 'Сканировать текст',
           textEnd: 'Текст завершен',

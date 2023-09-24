@@ -107,7 +107,7 @@ const countChange = (event) => {
   // console.log(progress.value)
 }
 
-const textArray = computed(() => (text.value ? text.value.split(' ') : []))
+const textArray = computed(() => (text.value ? text.value.trim().split(/\s+/).map(word => word.replace(/[.,!]/g, '')) : []))
 const word = computed(() => textArray.value[progress.value] || 'Текст завершен')
 
 const runline = ref(null)

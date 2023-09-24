@@ -29,11 +29,14 @@ const getFileNet = event => {
       return response.data;
     })
     .then(data => {
-      emit('openFile', event.target.value, data.value, 0);
+      if (data.value)
+        emit('openFile', event.target.value, data.value, 0);
+      else {
+        alert('Could not get the text from this link');
+      }
     })
     .catch(error => {
-      console.error(error);
-      alert('cloudBadMessage');
+      alert('Could not get the text from this link');
     })
 }
 </script>
