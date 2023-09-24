@@ -20,18 +20,20 @@ const getFileNet = event => {
   }
   console.log('getFileNet')
   console.log(event.target.value)
-  fetch(event.target.value, {
+  useFetch("https://www.w3.org/services/html2txt", {
     method: 'GET',
-    mode: 'no-cors',
+    query: { url: 'https://pinia.vuejs.org/ssr/nuxt.html'}
   })
-    .then(response => response.text())
-    .then(res => {
-      console.log(res)
-      emit('openFile', localFiles.value[i].filename, res, 0)
+    .then(response => {
+      console.log("response", response.data);
+      return response.data;
+    })
+    .then(data => {
+      emit('openFile', event.target.value, data.value, 0);
     })
     .catch(error => {
-      console.error(error)
-      alert($t('cloudBadMessage'))
+      console.error(error);
+      alert('cloudBadMessage');
     })
 }
 </script>
