@@ -54,7 +54,9 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import state from '../../store.js'
+import { useStore } from '../state-management/store'
+
+const store = useStore()
 
 const timer = ref()
 const timerSpeed = ref()
@@ -63,10 +65,10 @@ const wordsPerMinuteMIN = 20
 const wordsPerMinuteMAX = 1000
 const isPlay = computed({
   get() {
-    return state.isPlay
+    return store.isPlay
   },
   set(value) {
-    state.isPlay = value
+    store.isPlay = value
   },
 })
 const wordsPerMinute = ref(100)
@@ -74,26 +76,26 @@ const wordsPerMinute = ref(100)
 let animId
 const text = computed({
   get() {
-    return state.text
+    return store.text
   },
   set(value) {
-    state.text = value
+    store.text = value
   },
 })
 const progress = computed({
   get() {
-    return state.progress
+    return store.progress
   },
   set(value) {
-    state.progress = value
+    store.progress = value
   },
 })
 const filename = computed({
   get() {
-    return state.filename
+    return store.filename
   },
   set(value) {
-    state.filename = value
+    store.filename = value
   },
 })
 
@@ -157,7 +159,7 @@ function pause() {
 
 function stop() {
   pause()
-  state.screen = 0
+  store.screen = 0
   filename.value = null
 }
 function goToEnd() {

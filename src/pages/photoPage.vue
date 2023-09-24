@@ -13,24 +13,26 @@
 </template>
 
 <script setup>
-import state from '../../store.js'
 import { computed, onMounted, ref, toRef } from 'vue'
+import { useStore } from '../state-management/store'
+
+const store = useStore()
 
 const webcamStream = computed({
   get() {
-    return state.webcamStream
+    return store.webcamStream
   },
   set(value) {
-    state.webcamStream = value
+    store.webcamStream = value
   }
 })
-const imageURL = toRef(state, 'imageURL')
+const imageURL = toRef(store, 'imageURL')
 const video = computed({
   get() {
-    return state.video
+    return store.video
   },
   set(value) {
-    state.video = value
+    store.video = value
   }
 })
 const canvas = ref(null)
@@ -46,11 +48,11 @@ function shot() {
 function takePhotoDone() {
   console.log('the photo end', webcamStream.value)
   webcamStream.value.getTracks()[0].stop()
-  state.imageURL = canvas.value.toDataURL('image/png')
-  state.screen = 0
+  store.imageURL = canvas.value.toDataURL('image/png')
+  store.screen = 0
 }
 function goBack() {
-  state.screen = 3
+  store.screen = 3
 }
 </script>
 <style lang="scss"></style>

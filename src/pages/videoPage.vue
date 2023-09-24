@@ -15,17 +15,18 @@
 </template>
 
 <script setup>
-import state from '../../store.js'
 import { computed, onMounted, ref } from 'vue'
+import { useStore } from '../state-management/store'
 
+const store = useStore()
 const video = ref()
 
 const webcamStream = computed({
   get() {
-    return state.webcamStream
+    return store.webcamStream
   },
   set(value) {
-    state.webcamStream = value
+    store.webcamStream = value
   },
 })
 onMounted(() => {
@@ -45,7 +46,7 @@ function startVideo() {
       .then((stream) => {
         video.value.srcObject = stream
         video.value.play()
-        state.video = video.value
+        store.video = video.value
         console.log('video.value', video.value)
         webcamStream.value = stream
       })
@@ -57,10 +58,10 @@ function startVideo() {
 function goBack() {
   webcamStream.value.getTracks()[0].stop()
   webcamStream.value = null
-  state.screen = 0
+  store.screen = 0
 }
 function shot() {
-  state.screen = 2
+  store.screen = 2
 }
 </script>
 <style lang="scss"></style>
